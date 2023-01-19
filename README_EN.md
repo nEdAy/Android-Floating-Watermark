@@ -4,9 +4,9 @@
 
 **FloatingX** A flexible and powerful ``permission-free`` hover window (watermark) solution.
 
-[中文简介](https://github.com/nEdAy/Android-Floating-Watermark/READDME.md)
+[中文简介](https://github.com/nEdAy/Android-Floating-Watermark/README.md)
 
-[中午使用文档见这里](https://cskf7l0wab.feishu.cn/wiki/wikcnLLBCe3fIDUTAzrEg754tzc)
+[中文使用文档见这里](https://cskf7l0wab.feishu.cn/wiki/wikcnLLBCe3fIDUTAzrEg754tzc)
 
 ## 👏 Features 
 
