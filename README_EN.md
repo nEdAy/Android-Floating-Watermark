@@ -84,15 +84,15 @@ Open the log viewer, you will see the whole track of Fx, which is easier to find
 
 ```kotlin
 FloatingX.init {
-        setContext(this@CustomApplication)
-        setLayout(R.layout.item_floating_new)
-  			addBlackClass(
-                MainActivity::class.java,
-                NewActivity::class.java,
-                ImmersedActivity::class.java
-         )
-  			//only if show is called, it will listen to the app-lifecycle, and then it will be inserted into the activity automatically
-        show()
+     setContext(this@CustomApplication)
+     setLayout(R.layout.item_floating_new)
+          addBlackClass(
+               MainActivity::class.java,
+               NewActivity::class.java,
+               ImmersedActivity::class.java
+          )
+     //only if show is called, it will listen to the app-lifecycle, and then it will be inserted into the activity automatically
+     show()
 }
 ````
 
@@ -100,12 +100,11 @@ FloatingX.init {
 
 ``` java
 AppHelper helper = AppHelper.builder()
-        .setContext(application)
-        .setLayout(R.layout.item_floating)
-        .build();
+     .setContext(application)
+     .setLayout(R.layout.item_floating)
+     .build();
 FloatingX.init(helper);
 ```
-
 
 
 ### Local hover window management
@@ -116,7 +115,7 @@ FloatingX.init(helper);
 
 ```kotlin
 ScopeHelper.builder {
-  setLayout(R.layout.item_floating)
+     setLayout(R.layout.item_floating)
 }.toControl(activity)
 ```
 
@@ -124,11 +123,11 @@ ScopeHelper.builder {
 
 ```kotlin
 ScopeHelper.builder()
-            .setLayout(R.layout.item_floating)
-            .build()
-            .toControl(activity)
-            .toControl(fragment)
-            .toControl(viewgroup)
+     .setLayout(R.layout.item_floating)
+     .build()
+     .toControl(activity)
+     .toControl(fragment)
+     .toControl(viewgroup)
 ```
 
 #### extended support for kt
@@ -137,7 +136,7 @@ ScopeHelper.builder()
 
 ```kotlin
 private val activityFx by activityToFx(activity) {
-    setLayout(R.layout.item_floating)
+     setLayout(R.layout.item_floating)
 }
 ```
 
@@ -145,7 +144,7 @@ private val activityFx by activityToFx(activity) {
 
 ```kotlin
 private val fragment by fragmentToFx(fragment) {
-    setLayout(R.layout.item_floating)
+     setLayout(R.layout.item_floating)
 }
 ```
 
@@ -153,11 +152,11 @@ private val fragment by fragmentToFx(fragment) {
 
 ```kotlin
 private val viewFx by createFx({
-        init(viewGroup)
-    }) {
-        setLayout(R.layout.item_floating)
-        setEnableLog(true, "main_fx")
-    }
+     init(viewGroup)
+}) {
+     setLayout(R.layout.item_floating)
+     setEnableLog(true, "main_fx")
+}
 ```
 
 ##### Quickly create an arbitrary scope hover window
@@ -168,6 +167,7 @@ private val customCreateFx by createFx {
     build().toControl(activity)
     build().toControl(fragment)
     build().toControl(viewgroup)
+}
 ```
 
 ## 👍 Thanks
