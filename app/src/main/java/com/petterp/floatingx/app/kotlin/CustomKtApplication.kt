@@ -1,17 +1,8 @@
 package com.petterp.floatingx.app.kotlin
 
-import android.app.Activity
 import android.app.Application
-import android.os.Bundle
-import android.view.MotionEvent
-import android.view.View
-import android.widget.Toast
 import com.petterp.floatingx.FloatingX
 import com.petterp.floatingx.app.*
-import com.petterp.floatingx.app.simple.FxAnimationImpl
-import com.petterp.floatingx.assist.FxGravity
-import com.petterp.floatingx.impl.FxScrollImpl
-import com.petterp.floatingx.impl.lifecycle.FxTagActivityLifecycleImpl
 import com.petterp.floatingx.listener.IFxViewLifecycle
 
 /** Kotlin-Application */
@@ -27,28 +18,12 @@ class CustomKtApplication : Application() {
 //                TextView(applicationContext).apply {
 //                    text = "App"
 //                    textSize = 15f
+//                    width = 300
+//                    height = 4000
 //                    setBackgroundColor(Color.GRAY)
 //                    setPadding(10, 10, 10, 10)
 //                }
 //            )
-
-            // 设置悬浮窗默认方向
-            setGravity(FxGravity.RIGHT_OR_BOTTOM)
-            // 启用辅助方向,具体参加方法注释
-            setEnableAssistDirection(r = 100f)
-            // 设置启用边缘吸附
-            setEnableEdgeAdsorption(true)
-            // 设置边缘偏移量
-            setEdgeOffset(10f)
-            // 设置启用悬浮窗可屏幕外回弹
-            setEnableScrollOutsideScreen(true)
-            // 设置辅助方向辅助
-            // 设置启用动画
-            setEnableAnimation(true)
-            // 设置启用动画实现
-            setAnimationImpl(FxAnimationImpl())
-            // 设置移动边框
-            setBorderMargin(50f, 50f, 50f, 50f)
 
             /** 指定浮窗可显示的activity方式 */
             // 1.设置是否允许所有activity都进行显示,默认true
@@ -62,37 +37,15 @@ class CustomKtApplication : Application() {
 //                ScopeActivity::class.java
 //            )
 
-            // 设置点击事件
-            setOnClickListener {
-                Toast.makeText(this@CustomKtApplication, "浮窗被点击", Toast.LENGTH_SHORT).show()
-            }
-            // 设置tag-Activity生命周期回调时的触发
-            setTagActivityLifecycle(object : FxTagActivityLifecycleImpl() {
-                override fun onCreated(activity: Activity, bundle: Bundle?) {
-                    // 允许插入的浮窗activity执行到onCreated时会回调相应方法
-                }
-            })
             // 增加生命周期监听
             setViewLifecycle(object : IFxViewLifecycle {
-                override fun initView(view: View) {
-                }
-            })
-            // 设置滑动监听
-            setScrollListener(object : FxScrollImpl() {
-                override fun down() {
-                    // 按下
-                }
-
-                override fun up() {
-                    // 释放
-                }
-
-                override fun dragIng(event: MotionEvent, x: Float, y: Float) {
-                    // 正在拖动
-                }
-
-                override fun eventIng(event: MotionEvent) {
-                    // 接收所有事件传递
+                override fun postAttach() {
+                    FloatingX.control().apply {
+                        updateView(R.layout.item_floating)
+                        this.updateViewContent {
+                            it.setText(R.id.tvItemFx, nowDateFormatText())
+                        }
+                    }.show()
                 }
             })
             // 设置是否启用日志

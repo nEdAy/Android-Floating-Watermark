@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.petterp.floatingx.app.simple.FxAnimationImpl
 import com.petterp.floatingx.assist.FxGravity
 import com.petterp.floatingx.util.createFx
 
@@ -37,22 +36,8 @@ class ScopeActivity : AppCompatActivity() {
         setEnableAssistDirection(t = 10f, r = 10f)
         setEdgeOffset(40f)
         setBottomBorderMargin(40f)
-        setAnimationImpl(FxAnimationImpl())
-        setEnableAnimation(false)
         setEnableLog(true)
         build().toControl(viewGroup)
-    }
-
-    private val activityFx by createFx {
-        setLayout(R.layout.item_floating)
-        setEnableScrollOutsideScreen(false)
-        setEnableEdgeAdsorption(false)
-        setEdgeOffset(40f)
-        setBottomBorderMargin(40f)
-        setAnimationImpl(FxAnimationImpl())
-        setEnableAnimation(false)
-        setEnableLog(true)
-        build().toControl(this@ScopeActivity)
     }
 
     @SuppressLint("SetTextI18n")
@@ -70,12 +55,6 @@ class ScopeActivity : AppCompatActivity() {
                 addLinearLayout {
                     addItemView("显示悬浮窗") {
                         scopeFx.show()
-                    }
-                    addItemView("禁止触摸事件(禁止拖动)") {
-                        scopeFx.configControl.setEnableTouch(false)
-                    }
-                    addItemView("允许触摸事件(允许拖动)-默认允许") {
-                        scopeFx.configControl.setEnableTouch(true)
                     }
                     addItemView("隐藏悬浮窗") {
                         scopeFx.hide()
@@ -97,46 +76,12 @@ class ScopeActivity : AppCompatActivity() {
                             }
                         }
                     }
-                    addItemView("增加点击事件") {
-                        scopeFx.setClickListener {
-                            Toast.makeText(
-                                this@ScopeActivity,
-                                "被点击",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-                        }
-                    }
-                    addItemView("关闭点击事件响应") {
-                        scopeFx.configControl.setEnableClick(false)
-                    }
-                    addItemView("打开点击事件响应") {
-                        scopeFx.configControl.setEnableClick(true)
-                    }
                     addItemView("当前是否显示") {
                         Toast.makeText(
                             this@ScopeActivity,
                             "当前是否显示-${scopeFx.isShow()}",
                             Toast.LENGTH_SHORT
                         ).show()
-                    }
-                    addItemView("允许边缘吸附") {
-                        scopeFx.configControl.setEnableEdgeAdsorption(true)
-                    }
-                    addItemView("禁止边缘吸附") {
-                        scopeFx.configControl.setEnableEdgeAdsorption(false)
-                    }
-                    addItemView("允许边缘回弹") {
-                        scopeFx.configControl.setEnableEdgeRebound(true)
-                    }
-                    addItemView("禁止边缘回弹") {
-                        scopeFx.configControl.setEnableEdgeRebound(false)
-                    }
-                    addItemView("开启动画") {
-                        scopeFx.configControl.setEnableAnimation(true)
-                    }
-                    addItemView("边距调整为100f") {
-                        scopeFx.configControl.setBorderMargin(100f, 100f, 100f, 100f)
                     }
                     addItemView("设置浮窗子view点击事件(layoutId的示例)") {
                         scopeFx.updateViewContent {

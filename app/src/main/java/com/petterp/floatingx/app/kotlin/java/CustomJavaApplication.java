@@ -1,4 +1,4 @@
-package com.petterp.floatingx.app.java;
+package com.petterp.floatingx.app.kotlin.java;
 
 import android.app.Activity;
 import android.app.Application;
@@ -8,18 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.petterp.floatingx.FloatingX;
-import com.petterp.floatingx.app.MainActivity;
 import com.petterp.floatingx.app.R;
-import com.petterp.floatingx.app.ScopeActivity;
-import com.petterp.floatingx.app.simple.FxAnimationImpl;
-import com.petterp.floatingx.app.simple.FxConfigStorageToSpImpl;
 import com.petterp.floatingx.assist.helper.AppHelper;
-import com.petterp.floatingx.assist.helper.BasisHelper;
 import com.petterp.floatingx.assist.helper.ScopeHelper;
 import com.petterp.floatingx.impl.lifecycle.FxTagActivityLifecycleImpl;
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 
 /**
  * java 中的配置示例
@@ -58,12 +51,6 @@ public class CustomJavaApplication extends Application {
 //            setViewLifecycle()
                 // 设置启用悬浮窗位置修复
                 .setEnableAbsoluteFix(true)
-                // 设置启用动画
-                .setEnableAnimation(true)
-                // 设置启用动画实现
-                .setAnimationImpl(new FxAnimationImpl())
-                // 设置方向保存impl
-                .setSaveDirectionImpl(new FxConfigStorageToSpImpl(this))
 
                 // 设置底部偏移量
                 .setBottomBorderMargin(100f)
@@ -73,8 +60,6 @@ public class CustomJavaApplication extends Application {
                 .setLeftBorderMargin(100f)
                 // 设置右侧偏移量
                 .setRightBorderMargin(100f)
-                // 设置允许触摸事件,默认为true
-                .setEnableTouch(true)
                 //启用悬浮窗,即默认会插入到允许的activity中
                 .setTagActivityLifecycle(new FxTagActivityLifecycleImpl() {
                     @Override

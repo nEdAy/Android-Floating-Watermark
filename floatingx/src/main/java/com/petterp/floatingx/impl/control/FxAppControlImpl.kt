@@ -81,12 +81,10 @@ open class FxAppControlImpl(private val helper: AppHelper) :
             if (getContainerGroup() === it) {
                 return false
             }
-            var isAnimation = false
             if (getManagerView() == null) {
                 helper.updateNavigationBar(activity)
                 helper.updateStatsBar(activity)
                 initManagerView()
-                isAnimation = true
             } else {
                 if (getManagerView()?.visibility != View.VISIBLE) getManagerView()?.visibility =
                     View.VISIBLE
@@ -96,10 +94,6 @@ open class FxAppControlImpl(private val helper: AppHelper) :
             helper.fxLog?.d("fxView-lifecycle-> code->addView")
             helper.iFxViewLifecycle?.postAttach()
             getContainerGroup()?.addView(getManagerView())
-            if (isAnimation && helper.enableAnimation && helper.fxAnimation != null) {
-                helper.fxLog?.d("fxView->Animation -----start")
-                helper.fxAnimation?.fromStartAnimator(getManagerView())
-            }
         } ?: helper.fxLog?.e("system -> fxParentView==null")
         return true
     }

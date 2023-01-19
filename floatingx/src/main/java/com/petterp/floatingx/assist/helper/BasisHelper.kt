@@ -6,7 +6,6 @@ import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
 import com.petterp.floatingx.assist.*
 import com.petterp.floatingx.listener.IFxConfigStorage
-import com.petterp.floatingx.listener.IFxScrollListener
 import com.petterp.floatingx.listener.IFxViewLifecycle
 import com.petterp.floatingx.util.FxLog
 import kotlin.math.abs
@@ -27,9 +26,6 @@ open class BasisHelper {
 
     @JvmField
     internal var layoutParams: FrameLayout.LayoutParams? = null
-
-    @JvmField
-    internal var fxAnimation: FxAnimation? = null
 
     @JvmField
     internal var defaultY: Float = 0f
@@ -56,25 +52,13 @@ open class BasisHelper {
     internal var enableEdgeRebound: Boolean = true
 
     @JvmField
-    internal var enableAnimation: Boolean = false
-
-    @JvmField
     internal var enableSaveDirection: Boolean = false
 
     @JvmField
     internal var enableDebugLog: Boolean = false
 
     @JvmField
-    internal var enableTouch: Boolean = true
-
-    @JvmField
-    internal var enableClickListener: Boolean = true
-
-    @JvmField
     internal var enableAssistLocation: Boolean = false
-
-    @JvmField
-    internal var iFxScrollListener: IFxScrollListener? = null
 
     @JvmField
     internal var iFxViewLifecycle: IFxViewLifecycle? = null
@@ -107,7 +91,6 @@ open class BasisHelper {
     internal fun clear() {
         layoutView = null
         enableFx = false
-        fxAnimation?.cancelAnimation()
     }
 
     abstract class Builder<T, B : BasisHelper> {
@@ -119,7 +102,6 @@ open class BasisHelper {
         private var gravity: FxGravity = FxGravity.DEFAULT
         private var clickTime: Long = 300L
         private var layoutParams: FrameLayout.LayoutParams? = null
-        private var fxAnimation: FxAnimation? = null
 
         private var defaultY: Float = 0f
         private var defaultX: Float = 0f
@@ -131,18 +113,14 @@ open class BasisHelper {
         private var enableAbsoluteFix: Boolean = false
         private var enableEdgeAdsorption: Boolean = true
         private var enableEdgeRebound: Boolean = true
-        private var enableAnimation: Boolean = false
         private var enableDebugLog: Boolean = false
         private var fxLogTag: String = ""
-        private var enableTouch: Boolean = true
-        private var enableClickListener: Boolean = false
         private var enableAssistLocation: Boolean = false
 
         private var enableSaveDirection: Boolean = false
         private var enableDefaultSave: Boolean = false
 
         private var iFxConfigStorage: IFxConfigStorage? = null
-        private var iFxScrollListener: IFxScrollListener? = null
         private var iFxViewLifecycle: IFxViewLifecycle? = null
         private var ifxClickListener: View.OnClickListener? = null
 
@@ -157,7 +135,6 @@ open class BasisHelper {
                 gravity = this@Builder.gravity
                 clickTime = this@Builder.clickTime
                 layoutParams = this@Builder.layoutParams
-                fxAnimation = this@Builder.fxAnimation
 
                 defaultY = this@Builder.defaultY
                 defaultX = this@Builder.defaultX
@@ -166,17 +143,13 @@ open class BasisHelper {
                 enableAbsoluteFix = this@Builder.enableAbsoluteFix
                 enableEdgeAdsorption = this@Builder.enableEdgeAdsorption
                 enableEdgeRebound = this@Builder.enableEdgeRebound
-                enableAnimation = this@Builder.enableAnimation
                 borderMargin = this@Builder.borderMargin
                 enableSaveDirection = this@Builder.enableSaveDirection
-                enableTouch = this@Builder.enableTouch
-                enableClickListener = this@Builder.enableClickListener
                 enableAssistLocation = this@Builder.enableAssistLocation
 
                 enableDebugLog = this@Builder.enableDebugLog
                 fxLogTag = this@Builder.fxLogTag
 
-                iFxScrollListener = this@Builder.iFxScrollListener
                 iFxViewLifecycle = this@Builder.iFxViewLifecycle
                 iFxConfigStorage = this@Builder.iFxConfigStorage
                 iFxClickListener = this@Builder.ifxClickListener
@@ -209,20 +182,6 @@ open class BasisHelper {
         }
 
         /**
-         * 是否启用触摸事件-(onTouchEvent)
-         *
-         * true -> 浮窗允许移动 , 并且主动消费所有onTouchEvent中的事件
-         *
-         * false -> ,浮窗屏蔽移动 , 事件将遵循默认传递过程，将询问其子view是否需要消费,用户可自行处理
-         *
-         * @param isEnable 默认true
-         */
-        fun setEnableTouch(isEnable: Boolean): T {
-            this.enableTouch = isEnable
-            return this as T
-        }
-
-        /**
          * 设置启用屏幕外滚动 默认为true,即悬浮窗可以拖动到全屏任意位置(除了状态栏与导航栏禁止覆盖)
          * false时,可拖动范围受 borderMargin-边框偏移 与 moveEdge-边缘偏移 限制
          * 即可拖动范围=屏幕大小-(borderMargin+moveEdge+系统状态栏与导航栏(y轴))
@@ -248,18 +207,6 @@ open class BasisHelper {
          */
         fun setEnableAbsoluteFix(isEnable: Boolean): T {
             this.enableAbsoluteFix = isEnable
-            return this as T
-        }
-
-        /** 设置悬浮窗点击事件 [clickListener] 点击事件 [time] 重复时间-> default=500ms */
-        @JvmOverloads
-        fun setOnClickListener(
-            time: Long = 500L,
-            clickListener: View.OnClickListener
-        ): T {
-            this.enableClickListener = true
-            this.ifxClickListener = clickListener
-            this.clickTime = time
             return this as T
         }
 
@@ -362,12 +309,6 @@ open class BasisHelper {
             return this as T
         }
 
-        /** 设置是否启用动画 */
-        fun setEnableAnimation(isEnable: Boolean): T {
-            enableAnimation = isEnable
-            return this as T
-        }
-
         /**
          * 设置悬浮窗视图默认位置,默认右下角,
          *
@@ -378,31 +319,9 @@ open class BasisHelper {
             return this as T
         }
 
-        /**
-         * 设置启用动画具体实现
-         *
-         * @param fxAnimation 动画的具体实现类
-         * @sample [com.petterp.floatingx.app.simple.FxAnimationImpl]
-         */
-        fun setAnimationImpl(fxAnimation: FxAnimation): T {
-            this.fxAnimation = fxAnimation
-            this.enableAnimation = true
-            return this as T
-        }
-
         /** 设置悬浮窗view-lifecycle */
         fun setViewLifecycle(iFxViewLifecycle: IFxViewLifecycle): T {
             this.iFxViewLifecycle = iFxViewLifecycle
-            return this as T
-        }
-
-        /**
-         * 设置悬浮窗view-移动监听
-         *
-         * @sample com.petterp.floatingx.impl.FxScrollImpl
-         */
-        fun setScrollListener(iFxScrollListener: IFxScrollListener): T {
-            this.iFxScrollListener = iFxScrollListener
             return this as T
         }
 

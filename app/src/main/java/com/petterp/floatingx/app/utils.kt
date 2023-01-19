@@ -11,6 +11,8 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * 写示例页面的工具
@@ -88,4 +90,11 @@ inline fun ViewGroup.addTextView(obj: TextView.() -> Unit) {
 
 fun Class<*>.start(context: Context) {
     context.startActivity(Intent(context, this))
+}
+
+
+ fun nowDateFormatText(): String {
+    val date = Date()
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd :hh:mm:ss", Locale.getDefault())
+    return dateFormat.format(date)
 }

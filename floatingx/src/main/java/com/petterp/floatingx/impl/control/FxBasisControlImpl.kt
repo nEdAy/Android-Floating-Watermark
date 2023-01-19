@@ -5,10 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.core.view.ViewCompat
-import com.petterp.floatingx.assist.FxAnimation
 import com.petterp.floatingx.assist.helper.BasisHelper
 import com.petterp.floatingx.listener.IFxConfigStorage
-import com.petterp.floatingx.listener.IFxScrollListener
 import com.petterp.floatingx.listener.IFxViewLifecycle
 import com.petterp.floatingx.listener.control.IFxConfigControl
 import com.petterp.floatingx.listener.control.IFxControl
@@ -38,28 +36,13 @@ open class FxBasisControlImpl(private val helper: BasisHelper) : IFxControl, IFx
 
     override fun cancel() {
         if (managerView == null && viewHolder == null) return
-        if (helper.enableAnimation &&
-            helper.fxAnimation != null
-        ) {
-            managerView?.removeCallbacks(cancelAnimationRunnable)
-            val duration = helper.fxAnimation!!.toEndAnimator(managerView)
-            animatorCallback(duration, cancelAnimationRunnable)
-        } else reset()
+        reset()
     }
 
     override fun hide() {
         if (helper.enableFx) helper.enableFx = false
         if (!isShow()) return
-        if (helper.enableAnimation && helper.fxAnimation != null) {
-            if (helper.fxAnimation!!.endJobIsRunning()) {
-                helper.fxLog?.d("fxView->Animation ,endAnimation Executing, cancel this operation!")
-                return
-            }
-            helper.fxLog?.d("fxView->Animation ,endAnimation Running")
-            managerView?.removeCallbacks(hideAnimationRunnable)
-            val duration = helper.fxAnimation!!.toEndAnimator(managerView)
-            animatorCallback(duration, hideAnimationRunnable)
-        } else detach()
+        detach()
     }
 
     override fun isShow(): Boolean =
@@ -91,59 +74,6 @@ open class FxBasisControlImpl(private val helper: BasisHelper) : IFxControl, IFx
         provider.apply(viewHolder ?: return)
     }
 
-    override fun setClickListener(time: Long, clickListener: View.OnClickListener) {
-        helper.iFxClickListener = clickListener
-        helper.clickTime = time
-    }
-
-    override fun setClickListener(clickListener: View.OnClickListener) {
-        helper.iFxClickListener = clickListener
-    }
-
-    /*
-    * config配置相关接口实现
-    * */
-    override fun setEnableClick(isEnable: Boolean) {
-        helper.enableClickListener = isEnable
-    }
-
-    override fun setEnableAnimation(isEnable: Boolean, animationImpl: FxAnimation) {
-        helper.enableAnimation = isEnable
-        helper.fxAnimation = animationImpl
-    }
-
-    override fun setEnableAnimation(isEnable: Boolean) {
-        helper.enableAnimation = isEnable
-    }
-
-    override fun setBorderMargin(t: Float, l: Float, b: Float, r: Float) {
-        helper.borderMargin.apply {
-            this.t = t
-            this.l = l
-            this.b = b
-            this.r = r
-        }
-        managerView?.moveToEdge()
-    }
-
-    override fun setEdgeOffset(edgeOffset: Float) {
-        helper.edgeOffset = edgeOffset
-        managerView?.moveToEdge()
-    }
-
-    override fun setEnableAbsoluteFix(isEnable: Boolean) {
-        helper.enableAbsoluteFix = isEnable
-    }
-
-    override fun setEnableEdgeRebound(isEnable: Boolean) {
-        helper.enableEdgeRebound = isEnable
-        managerView?.moveToEdge()
-    }
-
-    override fun setScrollListener(listener: IFxScrollListener) {
-        helper.iFxScrollListener = listener
-    }
-
     override fun setViewLifecycleListener(listener: IFxViewLifecycle) {
         helper.iFxViewLifecycle = listener
     }
@@ -159,23 +89,6 @@ open class FxBasisControlImpl(private val helper: BasisHelper) : IFxControl, IFx
 
     override fun clearLocationStorage() {
         helper.iFxConfigStorage?.clear()
-    }
-
-    override fun setEnableTouch(isEnable: Boolean) {
-        helper.enableTouch = isEnable
-    }
-
-    override fun setEnableEdgeAdsorption(isEnable: Boolean) {
-        helper.enableEdgeAdsorption = isEnable
-    }
-
-    private fun animatorCallback(long: Long, runnable: Runnable) {
-        val magnetView = managerView ?: return
-        magnetView.removeCallbacks(runnable)
-        magnetView.postDelayed(
-            runnable,
-            long
-        )
     }
 
     /*
@@ -248,15 +161,6 @@ open class FxBasisControlImpl(private val helper: BasisHelper) : IFxControl, IFx
     protected fun FxManagerView.show() {
         helper.enableFx = true
         visibility = View.VISIBLE
-        val fxAnimation = helper.fxAnimation ?: return
-        if (helper.enableAnimation) {
-            if (fxAnimation.fromJobIsRunning()) {
-                helper.fxLog?.d("fxView->Animation ,startAnimation Executing, cancel this operation!")
-                return
-            }
-            helper.fxLog?.d("fxView->Animation ,startAnimation Executing, cancel this operation.")
-            fxAnimation.fromStartAnimator(this)
-        }
     }
 
     protected open fun reset() {
