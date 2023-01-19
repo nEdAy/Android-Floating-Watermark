@@ -2,7 +2,7 @@
 
 [![](https://jitpack.io/v/nEdAy/Android-Floating-Watermark.svg)](https://jitpack.io/#nEdAy/Android-Floating-Watermark)  [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/) 
 
-**FloatingX** A flexible and powerful ``permission-free`` hover window solution.
+**FloatingX** A flexible and powerful ``permission-free`` hover window (watermark) solution.
 
 [中文简介](https://github.com/nEdAy/Android-Floating-Watermark/READDME.md)
 
