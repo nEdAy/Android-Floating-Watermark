@@ -77,7 +77,6 @@ class FxViewHolder(private val itemView: View?) {
         getView<View>(id).setBackgroundColor(color)
         return this
     }
-
     fun setGone(@IdRes viewId: Int, isGone: Boolean): FxViewHolder {
         val view = getView<View>(viewId)
         view.visibility = if (isGone) View.GONE else View.VISIBLE

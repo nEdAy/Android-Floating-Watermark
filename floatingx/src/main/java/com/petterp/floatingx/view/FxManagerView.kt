@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.petterp.floatingx.assist.FxGravity
@@ -28,10 +27,6 @@ class FxManagerView @JvmOverloads constructor(
     private var mParentWidth = 0f
     private var mParentHeight = 0f
 
-    private var mPortraitY = 0f
-
-    private var scaledTouchSlop = 0
-
     private var _childFxView: View? = null
     val childFxView: View? get() = _childFxView
 
@@ -46,7 +41,6 @@ class FxManagerView @JvmOverloads constructor(
         checkNotNull(_childFxView) { "initFxView -> Error,check your layoutId or layoutView." }
         initLocation()
         isClickable = true
-        scaledTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
         helper.iFxViewLifecycle?.initView(this)
         // 注意这句代码非常重要,可以避免某些情况下View被隐藏掉
         setBackgroundColor(Color.TRANSPARENT)
@@ -143,16 +137,9 @@ class FxManagerView @JvmOverloads constructor(
         super.onConfigurationChanged(newConfig)
         helper.fxLog?.d("fxView--lifecycle-> onConfigurationChanged--")
         val parentGroup = (parent as? ViewGroup) ?: return
-        val isLandscape = newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
-        var isNavigationCHanged = false
         // 对于全局的处理
         if (helper is AppHelper) {
-            val navigationBarHeight = helper.navigationBarHeight
             (helper as AppHelper).updateNavigationBar(topActivity)
-            isNavigationCHanged = navigationBarHeight != helper.navigationBarHeight
-        }
-        if (isLandscape || isNavigationCHanged) {
-            mPortraitY = y
         }
 
         // 如果视图大小改变,则更新位置
