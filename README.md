@@ -8,7 +8,7 @@
 
 相较 `系统浮窗 `方案，该方案无需 `悬浮窗权限 `和 `点击穿透 Android 12 透明度要求`，相较 `Base 类添加水印布局 `方案，该方案无侵入性且覆盖全面（无源码部分页面也可全局覆盖到）。
 
-[English Introduction](https://github.com/nEdAy/Android-Floating-Watermark/blob/main/README_EN.md)
+[English Introduction](hhttps://github.com/nEdAy/Android-Floating-Watermark/blob/main/README_EN.md)
 
 [具体使用文档见这里](https://cskf7l0wab.feishu.cn/wiki/wikcnLLBCe3fIDUTAzrEg754tzc)
 
@@ -52,7 +52,6 @@ allprojects {
 > ```groovy
 > dependencyResolutionManagement {
 > repositories {
-> 
 >      // ...
 >      maven { url 'https://jitpack.io' }
 >  }
@@ -89,9 +88,9 @@ dependencies {
 
 ```kotlin
 FloatingX.init {
-        setLayout(R.layout.item_floating_new)
-  	//只有调用了enableFx(),后续才会自动插入activity中
-        enableFx()
+     setLayout(R.layout.item_floating_new)
+     //只有调用了enableFx(),后续才会自动插入activity中
+     enableFx()
 }
 ```
 
@@ -99,9 +98,9 @@ FloatingX.init {
 
 ```java
 AppHelper helper = AppHelper.builder()
-        .setLayout(R.layout.item_floating)
-	.enableFx()
-        .build();
+     .setLayout(R.layout.item_floating)
+     .enableFx()
+     .build();
 FloatingX.init(helper);
 ```
 
@@ -113,7 +112,7 @@ FloatingX.init(helper);
 
 ```kotlin
 ScopeHelper.builder {
-  setLayout(R.layout.item_floating)
+     setLayout(R.layout.item_floating)
 }.toControl(activity)
 ```
 
@@ -121,11 +120,11 @@ ScopeHelper.builder {
 
 ```kotlin
 ScopeHelper.builder()
-            .setLayout(R.layout.item_floating)
-            .build()
-            .toControl(activity)
-            .toControl(fragment)
-            .toControl(viewgroup)
+     .setLayout(R.layout.item_floating)
+     .build()
+     .toControl(activity)
+     .toControl(fragment)
+     .toControl(viewgroup)
 ```
 
 #### 对kt的扩展支持
@@ -134,8 +133,8 @@ ScopeHelper.builder()
 
 ```kotlin
 private val scopeFx by createFx {
-    setLayout(R.layout.item_floating)
-    build().toControl(this/Activity)
+     setLayout(R.layout.item_floating)
+     build().toControl(this/Activity)
 }
 
 ```
@@ -144,8 +143,8 @@ private val scopeFx by createFx {
 
 ```kotlin
 private val activityFx by createFx {
-    setLayout(R.layout.item_floating)
-    build().toControl(this/Fragment)
+     setLayout(R.layout.item_floating)
+     build().toControl(this/Fragment)
 }
 ```
 
@@ -153,8 +152,8 @@ private val activityFx by createFx {
 
 ```kotlin
 private val activityFx by createFx {
-    setLayout(R.layout.item_floating)
-    build().toControl(this/Viewgroup)
+     setLayout(R.layout.item_floating)
+     build().toControl(this/Viewgroup)
 }
 ```
 
