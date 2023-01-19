@@ -12,6 +12,7 @@
 
 [具体使用文档见这里](https://cskf7l0wab.feishu.cn/wiki/wikcnLLBCe3fIDUTAzrEg754tzc)
 
+
 ## 👏 特性
 
 - ~~支持 **自定义隐藏显示动画**;（该功能已删除）~~
@@ -26,6 +27,7 @@
 - 支持 **局部浮窗**，可在`ViewGroup` , `Fragment` , `Activity` 中进行显示；
 - 完善的日志系统，打开即可看到不同级别的Fx运行过程,更利于发现问题
 
+
 ## 👨‍💻‍ 依赖方式
 
 ### 添加jitpack仓库
@@ -36,10 +38,10 @@ Gradle7.0 以下
 
 ```groovy
 allprojects {
-		repositories {
-			// ...
-			maven { url 'https://jitpack.io' }
-		}
+     repositories {
+          // ...
+          maven { url 'https://jitpack.io' }
+     }
 }
 ```
 
@@ -61,7 +63,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	  implementation 'com.github.nEdAy:Android-Floating-Watermark:1.0.0'
+     implementation 'com.github.nEdAy:Android-Floating-Watermark:1.0.0'
 }
 ```
 
@@ -77,7 +79,6 @@ dependencies {
 | App                                                          | Activity                                                     | ViewGroup                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![image-20210808123000851](https://tva1.sinaimg.cn/large/008i3skNly1gtbk1ujkqfj31160s8444.jpg) | ![image-20210808123414921](https://tva1.sinaimg.cn/large/008i3skNly1gt99vralyqj313o0r4jwk.jpg) | ![image-20210808123553402](https://tva1.sinaimg.cn/large/008i3skNly1gt99xfpfwgj311y0jctc8.jpg) |
-
 
 
 ## 👨‍🔧‍ 使用方式
@@ -103,8 +104,6 @@ AppHelper helper = AppHelper.builder()
         .build();
 FloatingX.init(helper);
 ```
-
-
 
 ### 局部悬浮窗管理
 
@@ -159,6 +158,7 @@ private val activityFx by createFx {
 }
 ```
 
+
 ## 🤔 技术实现
 
 > **App** 级别悬浮窗 基于 `DecorView` 的的实现方案，全局持有一个单独的悬浮窗 `View` ,通过 `AppLifecycle` 监听 `Activity` 生命周期，并在相应时机 插入到 `DecorView` 上 ;
@@ -180,7 +180,6 @@ Ps: 为什么App级别悬浮窗 要插入到 `DecorView` ,而不是 **R.id.conte
 > 插入到 `DecorView` 可以最大程度控制悬浮窗的自由度，即悬浮窗可以真正意义上[`全屏`]拖动。
 >
 > 插入到 `content` 中,其拖动范围其实为 **应用视图范围** ,即摆放位置 受到 **状态栏** 和 **底部导航栏** 以及 默认的 `AppBar` 影响, 比如当用户隐藏了状态栏或者导航栏，相对应的视图大小会发生改变，将影响悬浮窗的位置摆放。
-
 
 
 ## 👍 感谢
