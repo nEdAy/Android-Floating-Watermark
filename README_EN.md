@@ -33,10 +33,10 @@ Gradle 7.0 and below
 
 ```groovy
 allprojects {
-		repositories {
-			// ...
-			maven { url 'https://jitpack.io' }
-		}
+     repositories {
+          // ...
+          maven { url 'https://jitpack.io' }
+     }
 }
 ```
 
@@ -46,11 +46,10 @@ allprojects {
 >
 > ```groovy
 > dependencyResolutionManagement {
-> repositories {
-> 
-> // ...
-> maven { url 'https://jitpack.io' }
-> }
+>      repositories {
+>           // ...
+>           maven { url 'https://jitpack.io' }
+>      }
 > }
 > ```
 
@@ -58,7 +57,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	  implementation 'com.github.nEdAy:Android-Floating-Watermark:1.0.0'
+     implementation 'com.github.nEdAy:Android-Floating-Watermark:1.0.0'
 }
 ```
 
