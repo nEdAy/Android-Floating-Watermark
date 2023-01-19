@@ -1,21 +1,21 @@
-# FloatingX
+# Android Floating Watermark
 
+[![](https://jitpack.io/v/nEdAy/Android-Floating-Watermark.svg)](https://jitpack.io/#nEdAy/Android-Floating-Watermark)  [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
+该项目 全部思想源自 [FloatingX](https://github.com/Petterpx/FloatingX)，只是针对 `全局水印` 这个特殊需求对 API 进行了删除与修改。
 
-![image-20210810161316095](https://tva1.sinaimg.cn/large/008i3skNly1gtbrg85hlhj61040k80ui02.jpg)
+一个灵活且强大的 `免权限` 悬浮窗 `水印` 解决方案，支持 `点击事件穿透 ` 和 `可配置全局、局部、边界、黑/白名单页面等 `。
 
-[![](https://jitpack.io/v/Petterpx/FloatingX.svg)](https://jitpack.io/#Petterpx/FloatingX)  [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/) 
+相较 `系统浮窗 `方案，该方案无需 `悬浮窗权限 `和 `点击穿透 Android 12 透明度要求`，相较 `Base 类添加水印布局 `方案，该方案无侵入性且覆盖全面（无源码部分页面也可全局覆盖到）。
 
-**FloatingX** 一个灵活且强大的 `免权限` 悬浮窗解决方案。
-
-[English Introduction](https://github.com/Petterpx/FloatingX/blob/main/README_EN.md)
+[English Introduction](https://github.com/nEdAy/Android-Floating-Watermark/blob/main/README_EN.md)
 
 [具体使用文档见这里](https://cskf7l0wab.feishu.cn/wiki/wikcnLLBCe3fIDUTAzrEg754tzc)
 
-## 👏 特性 
+## 👏 特性
 
-- 支持 **自定义隐藏显示动画**;
-- 支持 **多指触摸**，精准决策触摸手势;
+- ~~支持 **自定义隐藏显示动画**;（该功能已删除）~~
+- ~~支持 **多指触摸**，精准决策触摸手势;（该功能已删除）~~
 - 支持 自定义是否保存历史位置及还原;
 - 支持 **越界回弹**，**边缘悬停**，**边界设置**;
 - 支持 以 **layout**, **View**  的方式设置浮窗内容；
@@ -61,20 +61,14 @@ allprojects {
 
 ```groovy
 dependencies {
-	  implementation 'com.github.Petterpx:FloatingX:1.1.7'
+	  implementation 'com.github.nEdAy:Android-Floating-Watermark:1.0.0'
 }
 ```
 
 
 ## 🏄‍♀️ 效果图
 
-| 全屏,activity,fragment,单view                                | 小屏展示                                                     | 非正常比例缩放屏幕                                           |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![效果-展示1](https://github.com/Petterpx/FloatingX/blob/main/image/fx-api-simple.gif?raw=true) | ![演示-小屏](https://github.com/Petterpx/FloatingX/blob/main/image/fx-small-gif.gif?raw=true) | ![非正常比例缩放](https://github.com/Petterpx/FloatingX/blob/main/image/fx-view-deformed-simple.gif?raw=true) |
 
-| 屏幕旋转                                                     | 功能演示                                                     |      |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| ![演示-旋转](https://github.com/Petterpx/FloatingX/blob/main/image/fx-rotate-simple.gif?raw=true) | ![演示-局部功能](https://github.com/Petterpx/FloatingX/blob/main/image/fx-api-simple.gif?raw=true) |      |
 
 ### 完善的日志-查看器
 
@@ -179,7 +173,7 @@ private val activityFx by createFx {
 
 <img src="https://tva1.sinaimg.cn/large/008i3skNly1gr20ks7780j30rc0i5dim.jpg" alt="Activity-setContentView"  />
 
-具体见我的博客：[源码分析 | Activity-setContentView](https://juejin.cn/post/6897453195342610445) 
+具体见我的博客：[源码分析 | Activity-setContentView](https://juejin.cn/post/6897453195342610445)
 
 Ps: 为什么App级别悬浮窗 要插入到 `DecorView` ,而不是 **R.id.content** -> `FrameLayout` ?
 
@@ -190,8 +184,6 @@ Ps: 为什么App级别悬浮窗 要插入到 `DecorView` ,而不是 **R.id.conte
 
 
 ## 👍 感谢
-
-该项目 全部思想源自 [FloatingX](https://github.com/Petterpx/FloatingX)，只是针对 全屏水印 这个需求对 API 进行了删除与修改。
 
 基础 **悬浮窗View** 的思想源自 [EnFloatingView](https://github.com/leotyndale/EnFloatingView) 的 [FloatingMagnetView](https://github.com/leotyndale/EnFloatingView/blob/master/floatingview/src/main/java/com/imuxuan/floatingview/FloatingMagnetView.java) 实现方式，并在其之上重新梳理手势事件、动画、及大部分功能。
 

@@ -14,16 +14,16 @@ class MainActivity : AppCompatActivity() {
         createLinearLayoutToParent {
             addNestedScrollView {
                 addLinearLayout {
-                    addItemView("显示全局悬浮窗") {
+                    addItemView("显示全局水印") {
                         FloatingX.control().show()
                     }
-                    addItemView("隐藏全局悬浮窗") {
+                    addItemView("隐藏全局水印") {
                         FloatingX.control().hide()
                     }
-                    addItemView("进入黑名单页面(禁止显示浮窗)") {
+                    addItemView("进入黑名单页面(禁止显示水印)") {
                         BlackActivity::class.java.start(context)
                     }
-                    addItemView("更新当前全局浮窗显示View-(layoutId)") {
+                    addItemView("更新当前全局水印显示View-(layoutId)") {
                         FloatingX.control().apply {
                             updateView(R.layout.item_floating)
                             this.updateViewContent {
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                             }
                         }.show()
                     }
-                    addItemView("更新当前全局浮窗显示View-(layoutView)") {
+                    addItemView("更新当前全局水印显示View-(layoutView)") {
                         FloatingX.control().updateView {
                             TextView(it).apply {
                                 layoutParams = ViewGroup.LayoutParams(

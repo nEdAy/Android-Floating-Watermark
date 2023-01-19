@@ -1,14 +1,10 @@
-# FloatingX
+# Android Floating Watermark
 
-
-
-![image-20210810161316095](https://tva1.sinaimg.cn/large/008i3skNly1gwgttgkxlnj31040k840a.jpg)
-
-[![](https://jitpack.io/v/Petterpx/FloatingX.svg)](https://jitpack.io/#Petterpx/FloatingX)  [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/) 
+[![](https://jitpack.io/v/nEdAy/Android-Floating-Watermark.svg)](https://jitpack.io/#nEdAy/Android-Floating-Watermark)  [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/) 
 
 **FloatingX** A flexible and powerful ``permission-free`` hover window solution.
 
-[中文简介](https://github.com/Petterpx/FloatingX/READDME.md)
+[中文简介](https://github.com/nEdAy/Android-Floating-Watermark/READDME.md)
 
 [中午使用文档见这里](https://cskf7l0wab.feishu.cn/wiki/wikcnLLBCe3fIDUTAzrEg754tzc)
 
@@ -19,7 +15,7 @@
 - Chain calls, senseless insertion
 - Support customizing whether to save history position and restore
 - Support inserting `ViewGroup` , `Fragment` , `Activity`
-- Allow custom hover window indicators, custom hidden display animation
+- Allow custom hover window indicators ~~, custom hidden display animation~~
 - Support cross-border rebound, multi-finger touch, small screen adaptation, screen rotation
 - Support custom position direction, with auxiliary positioning display coordinates
 - Perfect `kotlin` build extensions, and friendly compatibility with `Java`.
@@ -62,22 +58,12 @@ allprojects {
 
 ```groovy
 dependencies {
-	  implementation 'com.github.Petterpx:FloatingX:1.1.7'
+	  implementation 'com.github.nEdAy:Android-Floating-Watermark:1.0.0'
 }
 ```
 
 
 ## 🏄‍♀️ 效果图
-
-| 全屏,activity,fragment,单view                                | 小屏展示                                                     | 非正常比例缩放屏幕                                           |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![效果-展示1](https://github.com/Petterpx/FloatingX/blob/main/image/fx-api-simple.gif?raw=true) | ![演示-小屏](https://github.com/Petterpx/FloatingX/blob/main/image/fx-small-gif.gif?raw=true) | ![非正常比例缩放](https://github.com/Petterpx/FloatingX/blob/main/image/fx-view-deformed-simple.gif?raw=true) |
-
-| 屏幕旋转                                                     | 功能演示                                                     |      |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| ![演示-旋转](https://github.com/Petterpx/FloatingX/blob/main/image/fx-rotate-simple.gif?raw=true) | ![演示-局部功能](https://github.com/Petterpx/FloatingX/blob/main/image/fx-api-simple.gif?raw=true) |      |
-
-
 
 ### Complete log-viewer
 

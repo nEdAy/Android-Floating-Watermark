@@ -93,7 +93,7 @@ fun Class<*>.start(context: Context) {
 }
 
 
- fun nowDateFormatText(): String {
+fun nowDateFormatText(): String {
     val date = Date()
     val dateFormat = SimpleDateFormat("yyyy-MM-dd :hh:mm:ss", Locale.getDefault())
     return dateFormat.format(date)
