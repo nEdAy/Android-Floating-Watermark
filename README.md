@@ -8,7 +8,7 @@
 
 相较 `系统浮窗 `方案，该方案无需 `悬浮窗权限 `和 `点击穿透 Android 12 透明度要求`，相较 `Base 类添加水印布局 `方案，该方案无侵入性且覆盖全面（无源码部分页面也可全局覆盖到）。
 
-[English Introduction](hhttps://github.com/nEdAy/Android-Floating-Watermark/blob/main/README_EN.md)
+[English Introduction](https://github.com/nEdAy/Android-Floating-Watermark/blob/main/README_EN.md)
 
 [具体使用文档见这里](https://cskf7l0wab.feishu.cn/wiki/wikcnLLBCe3fIDUTAzrEg754tzc)
 
