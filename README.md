@@ -191,6 +191,8 @@ Ps: 为什么App级别悬浮窗 要插入到 `DecorView` ,而不是 **R.id.conte
 
 ## 👍 感谢
 
+该项目 全部思想源自 [FloatingX](https://github.com/Petterpx/FloatingX)，只是针对 全屏水印 这个需求对 API 进行了删除与修改。
+
 基础 **悬浮窗View** 的思想源自 [EnFloatingView](https://github.com/leotyndale/EnFloatingView) 的 [FloatingMagnetView](https://github.com/leotyndale/EnFloatingView/blob/master/floatingview/src/main/java/com/imuxuan/floatingview/FloatingMagnetView.java) 实现方式，并在其之上重新梳理手势事件、动画、及大部分功能。
 
 对于导航栏的测量部分代码来自，wenlu,并在其之上增加了更多适配，已覆盖市场95%机型，可以说是目前能搜到的唯一可以准确测量的工具。

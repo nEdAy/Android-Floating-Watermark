@@ -1,3 +1,10 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -6,18 +13,6 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
     }
 }
-rootProject.name = "FloatingX"
+rootProject.name = "AndroidFloatingWatermark"
 include ':app'
 include ':floatingx'
-
-def localProperties = readPropertiesIfExist(new File(settingsDir, "local.properties"))
-gradle.ext.IS_DEV = localProperties.getProperty("IS_DEV", "true").toBoolean()
-
-static Properties readPropertiesIfExist(File propertiesFile) {
-    Properties result = new Properties()
-    if (propertiesFile.exists()) {
-        propertiesFile.withReader('UTF-8') { reader -> result.load(reader) }
-    }
-    return result
-}
-
